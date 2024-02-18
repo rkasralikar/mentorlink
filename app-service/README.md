@@ -3,7 +3,7 @@
 
 #Project Name
  
- Mentor Link 
+ Mentorlink 
 
  -----------------------------------------------------------------------------------------------------
 
@@ -54,7 +54,7 @@
 
  # project deployment 
   
-  development Instance : https://devapi.mentorlink.ai/
+  development Instance : https://<>
 
   Jenkins Project : appservice
 
