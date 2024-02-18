@@ -14,4 +14,5 @@ user-app/*
 bitbucket.txt
 *swp
 *.ipynb_checkpoints*
+.cache_ggshield*
 

@@ -8,7 +8,7 @@ const should = chai.should();
 chai.use(chaiHttp);
 let id = () => ObjectId(random('0a', 12).toString('hex'));
 var updateId = '';
-var registrationToken ='eyJhbGciOiJIUzI1NiJ9.bWVudG9ybGlua1VzZXJQYXlsb2Fk.dLPhI87FoxgdVX8k4Ar8z9ZA3tbz3J_-bcqJm9iLrVE';
+var registrationToken ='';
 
 let socialMediaData = {
     userid: id(),

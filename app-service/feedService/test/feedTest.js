@@ -6,11 +6,11 @@ const chaiHttp = require('chai-http');
 const should = chai.should();
 var updateId = '';
 var feedId ;
- let token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjE4OWZhMTNiNjMzMDgwMDEyYzJiZmYyIiwiaWQiOjU4NCwiaWF0IjoxNjM3ODE5NTc0LCJleHAiOjE4MTA2MTk1NzR9.Z91ilNUdrZsHbRxkhWSMDC0wJvYxSuj_YAFZoqbKzvI';
+ let token ='';
 chai.use(chaiHttp);
 let id = () => ObjectId(random('0a', 12).toString('hex'));
 
-let token1 ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjBjNzkzNjI4MWZlMzc0NzljNTUzOWQ1IiwiaWF0IjoxNjIzNjkyMTM0LCJleHAiOjE3OTY0OTIxMzR9.KtXvTuhZ8SxT_Brpti2P04V1yyiaflTKXdf8DxqDPkE';
+let token1 ='';
 
 let likeFeedData = {
     like_info:[{
