@@ -1,0 +1,57 @@
+node {
+    def commit_id
+
+    stage('Prep'){
+        checkout scm
+        sh "git rev-parse --short HEAD > .git/commit-id"
+        commit_id = readFile('.git/commit-id').trim()
+    }
+
+    stage('docker build/push'){
+       docker.withRegistry('https://205263170971.dkr.ecr.us-west-2.amazonaws.com',
+       'ecr:us-west-2:awsuserid'){
+            def apache = docker.build("apacheservice:apache-${commit_id}", '-f DockerFile .')
+            apache.push()
+            apache.push('latest')
+			def userservice = docker.build("userservice:user-${commit_id}",'-f UserDockerFile .')
+			userservice.push()
+            userservice.push('latest')
+			def feedservice = docker.build("feedservice:feed-${commit_id}", '-f feedDockerFile .')
+			feedservice.push()
+            feedservice.push('latest')
+			def chatservice = docker.build("chatservice:chat-${commit_id}", '-f chatDockerFile .')
+			chatservice.push()
+            chatservice.push('latest')
+         }
+     }
+     stage('clean Jenkins images'){
+        echo """BRANCH NAME: ${env.BRANCH_NAME}"""
+        try {
+            sh """docker rmi -f \$(docker images --filter=reference="*:apache-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:user-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:feed-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:chat-${commit_id}*" -q)"""
+        } catch (err) {
+            echo "Caught: ${err}"
+            currentBuild.result = 'SUCCESS'
+        }
+    }
+
+    if (env.BRANCH_NAME == 'master' ||
+    env.BRANCH_NAME.startsWith('development')||
+    env.BRANCH_NAME.startsWith('ml-')) {
+         stage('aws ecs'){
+            /*sh 'chmod +x ./awsfeedfile.sh'
+            sh 'chmod +x ./awsuserfile.sh'
+            sh 'chmod +x ./awschatfile.sh'
+            sh """echo ${commit_id}"""
+            sh "./awsfeedfile.sh ${commit_id}"
+            sh "./awsuserfile.sh ${commit_id}"
+            sh "./awschatfile.sh ${commit_id}" */
+         }
+    } else{
+        stage('skip aws ecs'){
+            echo "skip aws ecs"
+        }
+    }
+}

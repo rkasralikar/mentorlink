@@ -1,0 +1,23 @@
+# ---- Base Node ----
+FROM node:12.22.7-alpine AS base
+WORKDIR /home/nodejs/app
+COPY package.json .
+# ---- Dependencies ----
+FROM base AS dependencies
+RUN npm install  
+RUN cp -R node_modules prod_node_modules
+
+# ---- Release ----
+FROM base AS release
+COPY --from=dependencies /home/nodejs/app/prod_node_modules ./node_modules
+
+COPY config/ config/
+COPY lib/ lib/
+COPY local/ local/
+COPY kafka/ kafka/
+COPY middleware/ middleware/
+COPY feedService/ feedService/
+
+EXPOSE 3003 
+
+CMD [ "npm", "run","start-feed-gendoc" ]

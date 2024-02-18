@@ -1,0 +1,59 @@
+node {
+    def commit_id
+    def isDeploy=env.BRANCH_NAME == 'master' ||
+        env.BRANCH_NAME.startsWith('ml-')
+    stage('Prep'){
+        checkout scm
+        sh "git rev-parse --short HEAD > .git/commit-id"
+        commit_id = readFile('.git/commit-id').trim()
+    }
+    stage('docker build/push'){
+        docker.withRegistry('https://205263170971.dkr.ecr.us-west-2.amazonaws.com',
+        'ecr:us-west-2:awsuserid'){
+             def app = docker.build("analytics:analytic-${commit_id}", '.')
+             app.push()
+             if(isDeploy){
+                app.push('latest')
+             }
+        }
+    }
+    stage('clean Jenkins images'){
+        echo """BRANCH NAME: ${env.BRANCH_NAME}"""
+        try {
+            sh """docker rmi -f \$(docker images --filter=reference="*:analytic-${commit_id}*" -q)"""
+        } catch (err) {
+            echo "Caught: ${err}"
+            currentBuild.result = 'SUCCESS'
+        }
+    }
+    stage('dev: docker build/push'){
+        docker.withRegistry('https://205263170971.dkr.ecr.us-west-2.amazonaws.com',
+        'ecr:us-west-2:awsuserid'){
+             def app = docker.build("devimages:analytic-${commit_id}", '.')
+             app.push()
+             app.push('analytic_latest')
+        }
+    }
+    stage('dev: clean Jenkins images'){
+        echo """BRANCH NAME: ${env.BRANCH_NAME}"""
+        try {
+            sh """docker rmi -f \$(docker images --filter=reference="*:analytic-${commit_id}*" -q)"""
+        } catch (err) {
+            echo "Caught: ${err}"
+            currentBuild.result = 'SUCCESS'
+        }
+    }
+    stage('aws ecs'){
+        if (isDeploy) {
+            stage('aws ecs'){
+                sh 'chmod +x ./awsfile.sh'
+                sh """echo ${commit_id}"""
+                sh "./awsfile.sh ${commit_id}"
+            }
+        } else{
+            stage('skip aws ecs'){
+                echo "skip aws ecs"
+            }
+        }
+    }
+}

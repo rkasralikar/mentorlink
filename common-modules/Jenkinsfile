@@ -1,0 +1,25 @@
+node {
+    def commit_id
+
+    stage('Prep'){
+        checkout scm
+        sh "git rev-parse --short HEAD > .git/commit-id"
+        commit_id = readFile('.git/commit-id').trim()
+    }
+
+    if (env.BRANCH_NAME == 'master' ||
+    env.BRANCH_NAME.startsWith('docker')||
+    env.BRANCH_NAME.startsWith('ml-')) {
+         stage('restart All services'){
+             withCredentials([string(credentialsId: 'buildpassword', variable: 'mypwd')]) {
+                sh "curl 'http://54.188.121.9:8080/job/analyticsservice/job/master/build?delay=0sec' --user admin:$mypwd -X 'POST'"
+                sh "curl 'http://54.188.121.9:8080/job/mentorlink/job/development/build?delay=0sec' --user admin:$mypwd -X 'POST'"
+                sh "curl 'http://54.188.121.9:8080/job/bigdataservice/job/master/build?delay=0sec' --user admin:$mypwd -X 'POST'"
+                sh "curl 'http://54.188.121.9:8080/job/contentservice/job/rss_feed/build?delay=0sec' --user admin:$mypwd -X 'POST'"
+                sh "curl 'http://54.188.121.9:8080/job/infraservice/job/master/build?delay=0sec' --user admin:$mypwd -X 'POST'"
+                sh "curl 'http://54.188.121.9:8080/job/insightsservice/job/master/build?delay=0sec' --user admin:$mypwd -X 'POST'"
+                sh "curl 'http://54.188.121.9:8080/job/recommendationservice/job/feature%252Fstatic_recommendation/build?delay=0sec' --user admin:$mypwd -X 'POST'"
+            }
+         }
+    }
+}

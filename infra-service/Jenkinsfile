@@ -1,0 +1,31 @@
+node {
+    def commit_id
+    stage('Prep'){
+        checkout scm
+        sh "git rev-parse --short HEAD > .git/commit-id"
+        commit_id = readFile('.git/commit-id').trim()
+    }
+
+    if (env.BRANCH_NAME == 'master' ||
+    env.BRANCH_NAME.startsWith('docker') ||
+    env.BRANCH_NAME.startsWith('ml-')) {
+        stage('Docker compose'){
+            withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: "awsuserid",
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+            ]]) {
+                echo "PATH is: $PATH"
+                sh 'docker context ls'
+                sh 'echo ${AWS_ACCESS_KEY_ID}'
+                sh 'echo ${AWS_SECRET_ACCESS_KEY}'
+                sh 'docker --context "myecscontext" compose -p "dev-infra" up -d --no-recreate'
+            }
+        }
+    } else{
+        stage('skip aws ecs'){
+            echo "skip aws ecs"
+        }
+    }
+}

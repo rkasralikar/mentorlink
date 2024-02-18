@@ -1,0 +1,6 @@
+node {
+    def commit_id
+    stage ('Starting ALL jobs') {
+        build job: 'analyticsservice', parameters: [[]]
+    }
+}

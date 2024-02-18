@@ -1,0 +1,17 @@
+*.json
+*.env
+*.yml
+*.plist
+*.pem
+*certificates
+*chromedriver*
+user-app/*
+*/config/*
+*/s3/*
+*reco-service/docs/*
+*/Notebooks/*
+*AWSKafka
+bitbucket.txt
+*swp
+*.ipynb_checkpoints*
+

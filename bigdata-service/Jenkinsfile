@@ -1,0 +1,126 @@
+node {
+    def commit_id
+    def isDeploy=env.BRANCH_NAME == 'master' ||
+    env.BRANCH_NAME.startsWith('ml-')
+    stage('Prep'){
+        checkout scm
+        sh "git rev-parse --short HEAD > .git/commit-id"
+        commit_id = readFile('.git/commit-id').trim()
+    }
+    stage('docker build/push'){
+        docker.withRegistry('https://205263170971.dkr.ecr.us-west-2.amazonaws.com',
+        'ecr:us-west-2:awsuserid'){
+             def appRest = docker.build("bigdatarest:bigdatarest-${commit_id}",'--no-cache --build-arg rest_server_config_file="config_aws_rest_server.json" --build-arg log_level="error" .')
+             appRest.push()
+             if(isDeploy){
+                appRest.push('latest')
+             }
+             def appUser = docker.build("bigdatauser:bigdatauser-${commit_id}",'--no-cache --build-arg etl_list="config_aws_user_profile.json" --build-arg log_level="error" --build-arg freq=600 .')
+             appUser.push()
+
+             if(isDeploy){
+                appUser.push('latest')
+             }
+             def appYoutube = docker.build("bigdatayoutube:bigdatayoutube-${commit_id}",'--no-cache --build-arg etl_list="config_youtube.json" --build-arg log_level="error" --build-arg freq=28800 .')
+             appYoutube.push()
+             if(isDeploy){
+                appYoutube.push('latest')
+             }
+             def appRss = docker.build("bigdatarss:bigdatarss-${commit_id}",'--no-cache --build-arg etl_list="config_rss.json" --build-arg log_level="error" --build-arg freq=7200 .')
+             appRss.push()
+             if(isDeploy){
+                appRss.push('latest')
+             }
+             def appKafka = docker.build("bigdatakafka:bigdatakafka-${commit_id}",'--no-cache --build-arg kafka_config_file="config_aws_kafka_topics.json" --build-arg log_level="error" .')
+             appKafka.push()
+             if(isDeploy){
+                appKafka.push('latest')
+             }
+             def appSO = docker.build("bigdatastackoverflow:bigdatastackoverflow-${commit_id}",'--no-cache --build-arg etl_list="config_stackoverflow.json" --build-arg log_level="error" --build-arg freq=86400 .')
+             appSO.push()
+             appSO.push('latest')
+             def appMeetup = docker.build("bigdatameetup:bigdatameetup-${commit_id}",'--no-cache --build-arg etl_list="config_meetup.json" --build-arg log_level="error" --build-arg freq=86400 .')
+             appMeetup.push()
+             appMeetup.push('latest')
+        }
+    }
+    stage('clean Jenkins images'){
+        echo """BRANCH NAME: ${env.BRANCH_NAME}"""
+        try {
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatarest-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatauser-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatayoutube-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatarss-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatakafka-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatastackoverflow-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatameetup-${commit_id}*" -q)"""
+        } catch (err) {
+            echo "Caught: ${err}"
+            currentBuild.result = 'SUCCESS'
+        }
+    }
+    stage('dev: docker build/push'){
+        docker.withRegistry('https://205263170971.dkr.ecr.us-west-2.amazonaws.com',
+        'ecr:us-west-2:awsuserid'){
+             def appRest = docker.build("devimages:bigdatarest-${commit_id}",'--no-cache --build-arg rest_server_config_file="config_rest_server.json" --build-arg log_level="error" .')
+             appRest.push()
+             appRest.push('bigdatarest_latest')
+             def appUser = docker.build("devimages:bigdatauser-${commit_id}",'--no-cache --build-arg etl_list="config_user_profile.json" --build-arg log_level="error" --build-arg freq=600 .')
+             appUser.push()
+             appUser.push('bigdatauser_latest')
+             def appYoutube = docker.build("devimages:bigdatayoutube-${commit_id}",'--no-cache --build-arg etl_list="config_youtube.json" --build-arg log_level="error" --build-arg freq=28800 .')
+             appYoutube.push()
+             appYoutube.push('bigdatayoutube_latest')
+             def appRss = docker.build("devimages:bigdatarss-${commit_id}",'--no-cache --build-arg etl_list="config_rss.json" --build-arg log_level="error" --build-arg freq=7200 .')
+             appRss.push()
+             appRss.push('bigdatarss_latest')
+             def appKafka = docker.build("devimages:bigdatakafka-${commit_id}",'--no-cache --build-arg kafka_config_file="config_kafka_topics.json" --build-arg log_level="error" .')
+             appKafka.push()
+             appKafka.push('bigdatakafka_latest')
+             def appSO = docker.build("devimages:bigdatastackoverflow-${commit_id}",'--no-cache --build-arg etl_list="config_stackoverflow.json" --build-arg log_level="error" --build-arg freq=86400 .')
+             appSO.push()
+             appSO.push('bigdatastackoverflow_latest')
+             def appMeetup = docker.build("devimages:bigdatameetup-${commit_id}",'--no-cache --build-arg etl_list="config_meetup.json" --build-arg log_level="error" --build-arg freq=86400 .')
+             appMeetup.push()
+             appMeetup.push('bigdatameetup_latest')
+        }
+    }
+    stage('dev: clean Jenkins images'){
+        echo """BRANCH NAME: ${env.BRANCH_NAME}"""
+        try {
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatarest-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatauser-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatayoutube-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatarss-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatakafka-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatastackoverflow-${commit_id}*" -q)"""
+            sh """docker rmi -f \$(docker images --filter=reference="*:bigdatameetup-${commit_id}*" -q)"""
+        } catch (err) {
+            echo "Caught: ${err}"
+            currentBuild.result = 'SUCCESS'
+        }
+    }
+    if (isDeploy) {
+        stage('aws ecs'){
+            sh 'chmod +x ./awsrestfile.sh'
+            sh 'chmod +x ./awsuserfile.sh'
+            sh 'chmod +x ./awsrssfile.sh'
+            sh 'chmod +x ./awsyoutubefile.sh'
+            sh 'chmod +x ./awskafkafile.sh'
+            sh 'chmod +x ./awsstackoverflowfile.sh'
+            sh 'chmod +x ./awsmeetupfile.sh'
+            sh """echo ${commit_id}"""
+            sh "./awsrestfile.sh ${commit_id}"
+            sh "./awsuserfile.sh ${commit_id}"
+            sh "./awsrssfile.sh ${commit_id}"
+            sh "./awsyoutubefile.sh ${commit_id}"
+            sh "./awskafkafile.sh ${commit_id}"
+            sh "./awsstackoverflowfile.sh ${commit_id}"
+            sh "./awsmeetupfile.sh ${commit_id}"
+        }
+    } else{
+        stage('skip aws ecs'){
+            echo "skip aws ecs"
+        }
+    }
+}

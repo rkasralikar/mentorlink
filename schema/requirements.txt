@@ -1,0 +1,1 @@
+-e git+https://github.com/rkasralikar/mentorlink/common-modules.git#egg=common_modules

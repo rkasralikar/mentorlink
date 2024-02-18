@@ -1,0 +1,2 @@
+1. status_t user_activity_add(uint32 user_id, user_activity_t activity)
+2. status_t user_activity_delete(uint32 user_id)
