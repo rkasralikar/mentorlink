@@ -48,3 +48,6 @@ Thumbs.db
 *.mov
 *.wmv
 
+# aws specific docker compose yml file
+docker-compose-aws.yml
+
