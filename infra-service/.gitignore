@@ -53,3 +53,4 @@ docker-compose-aws.yml
 
 # Ignore json files
 *.json
+app-service-config/*
