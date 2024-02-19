@@ -1,6 +1,5 @@
 *.zip
 .venv*
-*.json
 *.env
 *.plist
 *.pem

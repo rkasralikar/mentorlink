@@ -1,0 +1,25 @@
+{
+    "family": "dev-apache",
+    "networkMode" : "awsvpc",
+    "containerDefinitions": [
+		{
+            "image": "%REPOSITORY_URI%:apache-%BUILD_ID%",
+            "name": "dev-apache",
+            "cpu": 10,
+            "memory": 256,
+            "essential": true,
+            "portMappings": [
+                 {
+				  "hostPort": 433,
+				  "containerPort": 433
+				},
+				{
+				  "hostPort": 80,
+                  "protocol": "tcp",
+				  "containerPort": 80
+				}
+            ]
+        }
+    ],
+    "networkMode": "awsvpc"
+}

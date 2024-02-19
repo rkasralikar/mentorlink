@@ -1,0 +1,911 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "User service server",
+    "description": "User service"
+  },
+  "host": "localhost:3003",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "token",
+      "name": "x-access-token",
+      "in": "header"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users/register-with-social-media": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "register user with social media",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "register user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userid": {
+                  "type": "string",
+                  "example": ""
+                },
+                "name": {
+                  "type": "string",
+                  "example": ""
+                },
+                "email": {
+                  "type": "string",
+                  "example": ""
+                },
+                "image": {
+                  "type": "string",
+                  "example": ""
+                },
+                "sign_in_method": {
+                  "type": "string",
+                  "example": ""
+                },
+                "ssid": {
+                  "type": "string",
+                  "example": ""
+                },
+                "skills": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "interests": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "career_summary": {
+                  "type": "string",
+                  "example": ""
+                },
+                "location": {
+                  "type": "array",
+                  "example": [
+                    "lat",
+                    "long"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "term_accepted": {
+                  "type": "number",
+                  "example": 1
+                },
+                "category": {
+                  "type": "string",
+                  "example": "register"
+                },
+                "action": {
+                  "type": "string",
+                  "example": "for register"
+                },
+                "label": {
+                  "type": "string",
+                  "example": "Register user by phone."
+                },
+                "value": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "deviceId": {
+                  "type": "string",
+                  "example": ""
+                },
+                "osVersion": {
+                  "type": "string",
+                  "example": ""
+                },
+                "osType": {
+                  "type": "string",
+                  "example": ""
+                },
+                "deviceName": {
+                  "type": "string",
+                  "example": ""
+                },
+                "deviceToken": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/update-user-information": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "update registered user information",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "User",
+            "in": "body",
+            "required": false,
+            "description": "update user information",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userid": {
+                  "type": "string",
+                  "example": ""
+                },
+                "name": {
+                  "type": "string",
+                  "example": ""
+                },
+                "email": {
+                  "type": "string",
+                  "example": ""
+                },
+                "image": {
+                  "type": "string",
+                  "example": ""
+                },
+                "sign_in_method": {
+                  "type": "string",
+                  "example": ""
+                },
+                "skills": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "interests": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "career_summary": {
+                  "type": "string",
+                  "example": ""
+                },
+                "location": {
+                  "type": "array",
+                  "example": [
+                    "lat",
+                    "long"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "term_accepted": {
+                  "type": "number",
+                  "example": 1
+                },
+                "category": {
+                  "type": "string",
+                  "example": "register"
+                },
+                "action": {
+                  "type": "string",
+                  "example": "for register"
+                },
+                "label": {
+                  "type": "string",
+                  "example": "Register user by phone."
+                },
+                "is_career_summary": {
+                  "type": "string",
+                  "example": ""
+                },
+                "last_login_time": {
+                  "type": "string",
+                  "example": ""
+                },
+                "value": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/register-with-phone": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "register user",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "register user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": ""
+                },
+                "phone": {
+                  "type": "string",
+                  "example": ""
+                },
+                "sign_in_method": {
+                  "type": "string",
+                  "example": ""
+                },
+                "ssid": {
+                  "type": "string",
+                  "example": ""
+                },
+                "skills": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "interests": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "career_summary": {
+                  "type": "string",
+                  "example": ""
+                },
+                "location": {
+                  "type": "array",
+                  "example": [
+                    "lat",
+                    "long"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "term_accepted": {
+                  "type": "number",
+                  "example": 1
+                },
+                "image": {
+                  "type": "string",
+                  "example": ""
+                },
+                "category": {
+                  "type": "string",
+                  "example": "register"
+                },
+                "action": {
+                  "type": "string",
+                  "example": "for register"
+                },
+                "label": {
+                  "type": "string",
+                  "example": "Register user by phone."
+                },
+                "value": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "deviceId": {
+                  "type": "string",
+                  "example": ""
+                },
+                "osVersion": {
+                  "type": "string",
+                  "example": ""
+                },
+                "osType": {
+                  "type": "string",
+                  "example": ""
+                },
+                "deviceName": {
+                  "type": "string",
+                  "example": ""
+                },
+                "deviceToken": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/register-with-email": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "register user",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "register user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": ""
+                },
+                "email": {
+                  "type": "string",
+                  "example": ""
+                },
+                "phone": {
+                  "type": "string",
+                  "example": ""
+                },
+                "password": {
+                  "type": "string",
+                  "example": ""
+                },
+                "linkedin_profile": {
+                  "type": "string",
+                  "example": ""
+                },
+                "sign_in_method": {
+                  "type": "string",
+                  "example": ""
+                },
+                "skills": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "interests": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "career_summary": {
+                  "type": "string",
+                  "example": ""
+                },
+                "location": {
+                  "type": "array",
+                  "example": [
+                    "lat",
+                    "long"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "term_accepted": {
+                  "type": "number",
+                  "example": 1
+                },
+                "image": {
+                  "type": "string",
+                  "example": ""
+                },
+                "category": {
+                  "type": "string",
+                  "example": "register"
+                },
+                "action": {
+                  "type": "string",
+                  "example": "for register"
+                },
+                "label": {
+                  "type": "string",
+                  "example": "Register user by phone."
+                },
+                "value": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/profile": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "get user Information by Id",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/allprofiles": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "get all user profile Information with pagination",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "get all user information",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pageNo": {
+                  "type": "string",
+                  "example": " "
+                },
+                "recordsPerPage": {
+                  "type": "string",
+                  "example": " "
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/two-step-authentication": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "register user",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "Two step authentication ",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": ""
+                },
+                "phone": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/getUsersList": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "get all active users",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "validate user credentials.",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "User data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": ""
+                },
+                "password": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/getRecentUpdates": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "get recent updated users list.",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "User data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "datetime": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/sendotp": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "send user signup otp",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "send user signup otp ",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "phone": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/verifyotp": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "verify user signup otp",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "verify user signup otp ",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": ""
+                },
+                "phone": {
+                  "type": "string",
+                  "example": ""
+                },
+                "code": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/token": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "get recent updated users list.",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/getShareFeedList": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "get share feed user list",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "get share feed user list ",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/generateRegistrationToken": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "generate authentication token",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/get-user-info": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "get user details based on mobile number or email",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "contacts": {
+                  "example": "any"
+                },
+                "emails": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/send-invite": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "send invitation to user to join mentor-link app",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "contacts",
+            "in": "body",
+            "required": true,
+            "description": "list of users ",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/interests": {
+      "get": {
+        "tags": [
+          "Interest"
+        ],
+        "description": "get list of interests.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Interest"
+        ],
+        "description": "save new interest.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "required": true,
+            "description": "interest data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,534 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Feed service server",
+    "description": "Feed service"
+  },
+  "host": "localhost:3004",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "token",
+      "name": "x-access-token",
+      "in": "header"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/feeds": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "get list of feeds according to user interests",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": true,
+            "description": "get list of feeds according to user interests",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "interests": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "category": {
+                  "type": "string",
+                  "example": "register"
+                },
+                "action": {
+                  "type": "string",
+                  "example": "for register"
+                },
+                "label": {
+                  "type": "string",
+                  "example": "Register user by phone."
+                },
+                "value": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/ids": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "get list of feed ids according to user interests",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": true,
+            "description": "get list of feed ids according to user interests",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "interests": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "category": {
+                  "type": "string",
+                  "example": "register"
+                },
+                "action": {
+                  "type": "string",
+                  "example": "for register"
+                },
+                "label": {
+                  "type": "string",
+                  "example": "Register user by phone."
+                },
+                "value": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/data": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "get feed details according to feed ids",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": true,
+            "description": "get feed details according to itemIds",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "itemIds": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/update-like-information/{id}": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "update feed information (like,unlike etc)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": false,
+            "description": "update feed information (like,unlike etc)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "liked": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/addDummmy": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "update feed information (like,unlike etc)",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/update-dislike-information/{id}": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "update feed information (like,unlike etc)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": false,
+            "description": "update feed information (like,unlike etc)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "disliked": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/update-save-information/{id}": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "update feed information (saved or unsaved etc)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": false,
+            "description": "update feed information (saved or unsaved etc)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "save_info": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "isSaved": {
+                        "type": "string",
+                        "example": ""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/savedFeeds": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "get list of feeds saved by the user",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": true,
+            "description": "get list of feeds saved by the user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "example": "register"
+                },
+                "action": {
+                  "type": "string",
+                  "example": "for register"
+                },
+                "label": {
+                  "type": "string",
+                  "example": "Register user by phone."
+                },
+                "value": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/update-visit-information/{id}": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "update feed information (like,unlike,visited etc)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/alluseractivities": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "get all user activities Information with pagination",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": true,
+            "description": "get all user activities",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pageNo": {
+                  "type": "string",
+                  "example": " "
+                },
+                "recordsPerPage": {
+                  "type": "string",
+                  "example": " "
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/userprofileanalytics": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "maintain user profile analytics information",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": true,
+            "description": "maintain user profile analytics information",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "string",
+                  "example": ""
+                },
+                "numSavedFeed": {
+                  "type": "string",
+                  "example": " "
+                },
+                "lastLoginTime": {
+                  "type": "string",
+                  "example": ""
+                },
+                "numFeedVisited": {
+                  "type": "string",
+                  "example": ""
+                },
+                "totalTimeSpent": {
+                  "type": "string",
+                  "example": ""
+                },
+                "searchedKeywords": {
+                  "type": "string",
+                  "example": ""
+                },
+                "appVersion": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feeds/getuserprofileanalytics": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "description": "maintain user profile analytics information",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Feed",
+            "in": "body",
+            "required": true,
+            "description": "maintain user profile analytics information",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pageNo": {
+                  "type": "string",
+                  "example": ""
+                },
+                "pageSize": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

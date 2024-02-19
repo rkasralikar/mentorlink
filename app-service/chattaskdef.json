@@ -1,0 +1,20 @@
+{
+    "family": "dev-chatservice",
+	"networkMode" : "awsvpc",
+    "containerDefinitions": [
+		{
+            "image": "%REPOSITORY_URI%:chat-%BUILD_ID%",
+            "name": "dev-chatservice",
+            "cpu": 10,
+            "memory": 256,
+            "essential": true,
+            "portMappings": [
+				{
+				  "hostPort": 8080,
+                  "protocol": "tcp",
+				  "containerPort": 8080
+				}
+            ]
+        }
+    ]
+}

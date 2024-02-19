@@ -1,0 +1,386 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "chat service server",
+    "description": "chat service"
+  },
+  "host": "stgapi.mentorlink.ai",
+  "basePath": "/c1/",
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "token",
+      "name": "x-access-token",
+      "in": "header"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/chats/initiate": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "create chat room",
+        "parameters": [
+          {
+            "name": "Chat",
+            "in": "body",
+            "required": true,
+            "description": "initiate chat room.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userIds": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "type": {
+                  "type": "string",
+                  "example": ""
+                },
+                "id": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/chats/sharefeed": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "sharefeed in chatroom",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Chat",
+            "in": "body",
+            "required": true,
+            "description": "sharefeed in chatroom.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "userId": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "lastMessage": {
+                        "type": "string",
+                        "example": ""
+                      }
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "example": ""
+                },
+                "id": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/chats/message": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "user send message.",
+        "parameters": [
+          {
+            "name": "Chat",
+            "in": "body",
+            "required": true,
+            "description": "send message.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": ""
+                },
+                "chatRoomId": {
+                  "type": "string",
+                  "example": ""
+                },
+                "postedByUser": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/chats/saveMessage": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "user send message.",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Chat",
+            "in": "body",
+            "required": true,
+            "description": "send message.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": ""
+                },
+                "chatRoomId": {
+                  "type": "string",
+                  "example": ""
+                },
+                "postedByUser": {
+                  "type": "string",
+                  "example": ""
+                },
+                "type": {
+                  "type": "string",
+                  "example": ""
+                },
+                "chatUserId": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/chats/getChatHistory": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "get chat history.",
+        "parameters": [
+          {
+            "name": "Chat",
+            "in": "body",
+            "required": true,
+            "description": "get chat history.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "chatRoomId": {
+                  "type": "string",
+                  "example": ""
+                },
+                "user": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/chats/getMyChats": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "get users previous chat list.",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/chats/getRecentUpdates": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "get recent updated users list.",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "get recent updated users list.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/chats/getuserchatanalytics": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "get user chat analytics .",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "get user chat analytics",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pageNo": {
+                  "type": "string",
+                  "example": ""
+                },
+                "recordsPerPage": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/chats/deleteRoomById": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "Delete Room By Room Id.",
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "User",
+            "in": "body",
+            "required": true,
+            "description": "User data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "family": "dev-feedservice",
+    "networkMode" : "awsvpc",
+    "containerDefinitions": [
+		{
+            "image": "%REPOSITORY_URI%:feed-%BUILD_ID%",
+            "name": "dev-feedservice",
+            "cpu": 10,
+            "memory": 256,
+            "essential": true,
+            "portMappings": [
+				{
+				  "hostPort": 3004,
+                  "protocol": "tcp",
+				  "containerPort": 3004
+				}
+            ]
+        }
+    ]
+}
