@@ -30,8 +30,6 @@ micro-service-skeleton/
 
 ### Who do I talk to? ###
 
-* Sudipto Nandi and Rahul Kasralikar
-* Fenchao Du
 
 
 # Mentorlink Instructions
