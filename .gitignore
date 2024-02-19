@@ -1,4 +1,5 @@
 *.zip
+.venv*
 *.json
 *.env
 *.yml
