@@ -6,7 +6,6 @@
 *certificates
 *chromedriver*
 user-app/*
-*/config/*
 */s3/*
 *reco-service/docs/*
 */Notebooks/*

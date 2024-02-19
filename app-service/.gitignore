@@ -50,4 +50,6 @@ Thumbs.db
 *.wmv
 
 package-lock.json
+config/stage.json
+config/prepprod.json
 #swagger_output.json

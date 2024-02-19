@@ -1,0 +1,80 @@
+{
+    "Database": {
+        "URL": "mongodb+srv://mongodbServer:mongo_server@cluster0.zq7iw.mongodb.net/mentor-link?retryWrites=true&w=majority",
+        "Debug": true,
+        "dbName": "mentor-link",
+        "SSL_CERT": "",
+        "Type": "Normal",
+        "dcDisableHooks": false
+    },
+    "SecureAccess": {
+        "whitelistDomains": [],
+        "enable": false
+    },
+    "App": {
+        "PORT": 8042,
+        "Miles": 2,
+        "PaginateLimit": 30,
+        "RequestExpireTime": 3,
+        "host": "http://localhost:8043/",
+        "WebHost": "http://localhost/",
+        "secret": "",
+        "tokenExpiresTime": "2000d",
+        "SiteName": "",
+        "SiteSortName": ""
+    },
+    "AWS": {
+        "AccessKey": "",
+        "SecretKey": "",
+        "region": "us-west-2",
+        "CloudWatchGroupName": "dev-instance",
+        "CloudWatchLog": true
+    },
+    "Redis": {
+        "Hostname": "13.233.53.9",
+        "Port": "6379",
+        "KeyExpireInSeconds": 300
+    },
+    "Twilio": {
+        "AccountSID": "",
+        "AuthToken": "",
+        "From": "+16506797259",
+        "ServiceID":"VAc4694a141e9f4f00d840de89d8f87502",
+        "TemplateID":"d-ea6508b9a1d84f77a9d1932b1fe459fd",
+        "EmailFrom":"",
+        "FromName":"Mentorlink"
+    },
+    "CronTask": {
+        "nextDelay": 10,
+        "idleDelay": 1000
+    },
+    "GoogleAnalytics":  {
+        "v": 1,
+        "tid": "UA-192509667-1",
+        "cid": 555
+    },
+    "Swagger":  {
+        "protocol": "https",
+        "baseUrl": "",
+        "userPort": 3003,
+		"userBasePath":"/",
+		"feedPort": 3004,
+		"feedBasePath":"/",
+        "chatPort": 8080,
+		"chatBasePath":"/"
+    },
+    "SendGrid": {
+        "SendgridAPIKey" : ""  
+    },
+    "FeedServer" : {
+        "feed_by_user":"http://1a21-104-177-34-102.ngrok.io/recommendation/",
+        "feed_details_by_id":"http://8218-104-177-34-102.ngrok.io/bigdata-get-bulk-item-info/"
+    },
+    "Kafka": {
+        "SERVER_IPS": ["IP1:9092","IP2:9092"],
+        "PORT": "11935",
+        "USER_ACTIVITY_TOPIC": "user-activity_dev",
+        "USER_PROFILE_ANALYTICS_TOPIC": "user-profile-analytics_dev"
+    }
+
+}

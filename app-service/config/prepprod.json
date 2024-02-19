@@ -1,0 +1,75 @@
+{
+    "Database": {
+        "URL": "mongodb+srv://mongodbServer:mongo_server@cluster0.zq7iw.mongodb.net/moch-link?retryWrites=true&w=majority",
+        "Debug": true,
+        "dbName": "moch-link",
+        "SSL_CERT": "",
+        "Type": "Normal",
+        "dcDisableHooks": false
+    },
+    "SecureAccess": {
+        "whitelistDomains": [],
+        "enable": false
+    },
+    "App": {
+        "PORT": 8042,
+        "Miles": 2,
+        "PaginateLimit": 30,
+        "RequestExpireTime": 3,
+        "host": "http://localhost:8043/",
+        "WebHost": "http://localhost/",
+        "secret": "iloveBiCS21",
+        "tokenExpiresTime": "2000d",
+        "SiteName": "",
+        "SiteSortName": ""
+    },
+    "SMTP": {
+        "From": "MAA",
+        "FromEmail": "sanjay.pawar@bicsinfotech.com",
+        "Host": "email-smtp.ap-south-1.amazonaws.com",
+        "Service": "AWS",
+        "User": "AKIATUDRF4SXJRXXGUGG",
+        "Password": "BAUAfdu5Rxamml1G1xRrElHXBLyPfJrj1i56oI6VnLES"
+    },
+    "AWS": {
+        "AccessKey": "AKIAS7SVDNWNQFS34VAF",
+        "SecretKey": "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",
+        "region": "us-west-2",
+        "CloudWatchGroupName": "stage-instance",
+        "CloudWatchLog": true,
+        "SQS": {
+            "queueURL": "https://sqs.ap-south-1.amazonaws.com/249345467566/dev-email-queue"
+        }
+    },
+    "Redis": {
+        "Hostname": "13.233.53.9",
+        "Port": "6379",
+        "KeyExpireInSeconds": 300
+    },
+    "Twilio": {
+        "AccountSID": "AC10c525a4b233cd24c9fad993344b905c",
+        "AuthToken": "aa8bbb06eb521d794d4ce4ff15a71514",
+        "From": "+17276191560",
+        "ServiceID":"VAc4694a141e9f4f00d840de89d8f87502",
+        "TemplateID":"d-ea6508b9a1d84f77a9d1932b1fe459fd",
+        "EmailFrom":"vivek.bhandurge@bicsinfotech.com",
+        "FromName":"Mentorlink"
+    },
+    "CronTask": {
+        "nextDelay": 10,
+        "idleDelay": 1000
+    },
+    "GoogleAnalytics":  {
+        "v": 1,
+        "tid": "UA-192509667-1",
+        "cid": 555
+    },
+    "SendGrid": {
+        "SendgridAPIKey" : "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"  
+    },
+    "FeedServer" : {
+        "feed_by_user":"http://1a21-104-177-34-102.ngrok.io/recommendation/",
+        "feed_details_by_id":"http://8218-104-177-34-102.ngrok.io/bigdata-get-bulk-item-info/"
+    }
+
+}
