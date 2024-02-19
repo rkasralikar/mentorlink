@@ -19,7 +19,7 @@ For Big data
 
 3. Current runs:
 
-    3.1 On bayes.mentorlink.ai:
+    3.1 On bayes server:
 
    Rest Server:
 
