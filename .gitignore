@@ -2,7 +2,6 @@
 .venv*
 *.json
 *.env
-*.yml
 *.plist
 *.pem
 *certificates
