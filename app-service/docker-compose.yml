@@ -1,0 +1,51 @@
+version: "3"
+services:
+  userservice:
+    image: "userservice"
+    build:
+      context: .
+      dockerfile: UserDockerFile 
+    environment:
+      - NODE_ENV=staging
+      - NUXT_ENV=staging
+    expose:
+      - 3003
+      - 4000
+  feedservice:
+    image: "feedservice"
+    build:
+      context: .
+      dockerfile: feedDockerFile 
+    environment:
+      - NODE_ENV=staging
+      - NUXT_ENV=staging
+    expose:
+      - 3003
+      - 4000    
+  chatservice:
+    image: "chatservice"
+    build:
+      context: .
+      dockerfile: chatDockerFile 
+    environment:
+      - NODE_ENV=staging
+      - NUXT_ENV=staging
+    expose:
+      - 8080
+      - 4000        
+  apache:
+    image: httpd:2.4
+    volumes:
+      - ./httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf:ro
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+    depends_on:
+      - userservice
+      - feedservice
+      - chatservice
+    links:
+      - userservice:userservice
+      - feedservice:feedservice
+      - chatservice:chatservice
+    ports:
+      - 80:80
+      - 443:443
