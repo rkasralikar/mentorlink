@@ -9,4 +9,6 @@ chromedriver*
 *swp
 *.ipynb_checkpoints*
 .cache_ggshield*
+tags
+*conf*
 
