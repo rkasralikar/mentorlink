@@ -56,6 +56,10 @@ This document complements the [feature code development plan](plans/feature-code
 
 ## Next steps
 
+Test data or coverage reports may reside in `plans/artifacts/`.
+
+## Next steps
+
 1. Identify sub-features from code development plan or issue tracker
 2. Populate this document with specific entries
 3. Link test tasks to source code commits or PR descriptions

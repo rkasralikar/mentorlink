@@ -42,6 +42,10 @@
 
 ## Next steps
 
+Associated diagrams or draft documents can be placed under `plans/artifacts/`.
+
+## Next steps
+
 1. Draft design document
 2. Share with stakeholders for feedback
 3. Iterate until approved

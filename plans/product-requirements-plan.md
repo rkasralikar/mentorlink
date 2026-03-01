@@ -37,6 +37,10 @@
 
 ## Next steps
 
+Artifacts produced during planning (meeting notes, sketches) should be stored in `plans/artifacts/`.
+
+## Next steps
+
 1. Schedule meeting with participants
 2. Create shared notes and record action items
 3. Circulate draft requirements and collect feedback

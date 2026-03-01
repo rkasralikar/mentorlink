@@ -60,6 +60,10 @@
 
 ## Next steps
 
+Keep prototypes, example outputs, or build artifacts in `plans/artifacts/`.
+
+## Next steps
+
 1. Break down design into discrete tasks in issue tracker
 2. Implement in order and submit PRs for review
 3. Merge and monitor in staging environment
