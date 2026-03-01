@@ -6,6 +6,11 @@ user-app/*
 */Notebooks/*
 */certs/*
 chromedriver*
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
 *swp
 *.ipynb_checkpoints*
 .cache_ggshield*
