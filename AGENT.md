@@ -14,15 +14,19 @@ patterns across multiple services.
 - Package managers: npm, pip
 
 ## Repository Layout
-- `*services` - Python microservices
-- `tests/` - Test files
-- `docs/` - Documentation
-- `scripts/` - Utility scripts
-- `plans/` - SDLC plans (committed to repo history)
+- `analytics-service/` — Python analytics microservice
+- `app-service/` — Node.js services: `userService`, `feedService`, `chatService`
+- `insights-service/` — insights microservice
+- `reco-service/` — recommendation service (Python/ML)
+- `bigdata-service/` — data pipeline service
+- `uc-service/` — user classification service
+- `common-modules/` — shared utilities across services
+- `user-app/` — React Native mobile app
+- `infra-service/` — AWS/deployment manifests and configs
+- `schema/` — shared JSON schemas
+- `plans/` — SDLC plans (committed to repo history)
 
-Respect the repository layout: multiple services, shared modules, and
-infrastructure code. For service-specific tasks, look inside the service
-folder first.
+For service-specific tasks, look inside the service folder first. Business logic lives under `*/src/`.
 
 ## Common Commands
 - `npm run dev` - Start development server

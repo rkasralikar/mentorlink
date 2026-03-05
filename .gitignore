@@ -1,5 +1,6 @@
 *.zip
 .venv*
+.claude/
 user-app/*
 */s3/*
 *reco-service/docs/*
