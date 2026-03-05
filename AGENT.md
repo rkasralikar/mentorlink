@@ -65,7 +65,23 @@ folder first.
 - When refactoring, maintain backward compatibility
 - Always check for existing utility functions before creating new ones
 
+## Agent Action Policy
+
+### Auto-approve (no confirmation needed)
+- Reading files, searching, grepping
+- Editing files, creating new files
+- Running tests, linters, builds
+- Installing dependencies (npm install, pip install)
+
+### Always confirm before proceeding
+- `git push` or force push
+- Deleting files or directories
+- Dropping or modifying database tables/schemas
+- Resetting git history (`git reset --hard`, `git rebase`)
+- Closing or merging PRs/issues
+- Any action that affects shared or remote state
+
 ## Vendor-Specific Instructions
 Vendor-specific instructions belong in `.github/copilot-instructions.md` or a
-similarly named file per agent (e.g. `claude-instructions.md`). Use
-`AGENT.md` for overarching advice.
+similarly named file per agent (e.g. `CLAUDE.md`). Use `AGENT.md` for
+overarching advice.

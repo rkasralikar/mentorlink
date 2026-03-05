@@ -1,5 +1,9 @@
 # Product Requirements Discussion Plan
 
+## Status
+
+_Not started. Update when active._
+
 **Objective:** Capture stakeholder needs and define clear product requirements for a new feature or project area.
 
 ## Goals
@@ -38,8 +42,6 @@
 ## Next steps
 
 Artifacts produced during planning (meeting notes, sketches) should be stored in `plans/artifacts/`.
-
-## Next steps
 
 1. Schedule meeting with participants
 2. Create shared notes and record action items

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add AGENT.md claude.md)",
+      "Bash(git commit -m \"$\\(cat <<'EOF'\ndocs: merge claude.md into AGENT.md\n\nFold project overview, tech stack, repo layout, commands, architecture\nnotes, env vars, code style, and testing conventions from claude.md into\nAGENT.md. AGENT.md takes precedence on project identity, change discipline,\nand SDLC workflow. claude.md retained as source artifact.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git add .gitignore && git status)",
+      "Bash(git -C ~/code status 2>/dev/null | head -5)",
+      "Bash(git -C ~/code diff HEAD -- claude.md && cat ~/code/claude.md)",
+      "Bash(git -C ~/code add AGENT.md .gitignore && git -C ~/code rm --cached claude.md && git -C ~/code status)",
+      "Bash(git -C ~/code rm -f claude.md && git -C ~/code status)"
+    ]
+  }
+}

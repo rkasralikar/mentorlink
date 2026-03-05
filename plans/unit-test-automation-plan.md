@@ -1,5 +1,9 @@
 # Unit Test Automation Plan (per Sub-feature)
 
+## Status
+
+_Not started. Update when active._
+
 **Objective:** Define a testing strategy and automation plan for each sub-feature in a feature development effort.
 
 This document complements the [feature code development plan](plans/feature-code-development-plan.md) by detailing how individual sub-features should be validated via automated tests.
@@ -57,8 +61,6 @@ This document complements the [feature code development plan](plans/feature-code
 ## Next steps
 
 Test data or coverage reports may reside in `plans/artifacts/`.
-
-## Next steps
 
 1. Identify sub-features from code development plan or issue tracker
 2. Populate this document with specific entries

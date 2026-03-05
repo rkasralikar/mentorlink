@@ -1,5 +1,9 @@
 # Feature Code Development Plan
 
+## Status
+
+_Not started. Update when active._
+
 **Objective:** Break down the approved design into incremental coding tasks, implement the feature, and add comprehensive tests.
 
 > This plan links back to the [feature design discussion plan](plans/feature-design-plan.md) which itself references the product requirements.
@@ -61,8 +65,6 @@
 ## Next steps
 
 Keep prototypes, example outputs, or build artifacts in `plans/artifacts/`.
-
-## Next steps
 
 1. Break down design into discrete tasks in issue tracker
 2. Implement in order and submit PRs for review

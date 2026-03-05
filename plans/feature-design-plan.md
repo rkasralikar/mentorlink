@@ -1,5 +1,9 @@
 # Feature Design Discussion Plan
 
+## Status
+
+_Not started. Update when active._
+
 **Objective:** Translate approved product requirements into a technical design that guides development.
 
 > This plan builds on the [product requirements discussion plan](plans/product-requirements-plan.md).
@@ -43,8 +47,6 @@
 ## Next steps
 
 Associated diagrams or draft documents can be placed under `plans/artifacts/`.
-
-## Next steps
 
 1. Draft design document
 2. Share with stakeholders for feedback
