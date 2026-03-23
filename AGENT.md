@@ -89,3 +89,4 @@ For service-specific tasks, look inside the service folder first. Business logic
 Vendor-specific instructions belong in `.github/copilot-instructions.md` or a
 similarly named file per agent (e.g. `CLAUDE.md`). Use `AGENT.md` for
 overarching advice.
+Use 'bd' for task tracking
